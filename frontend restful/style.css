@@ -61,3 +61,60 @@ a.btn{
     width: 40px;
     line-height: 45px;
 }
+table.i{
+	font-weight: 300;
+	min-width: 900px;
+	margin:20px 0;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table.i tr:nth-of-type(1){
+	background: rgba(56, 65, 94, 0.75);
+	color: white;
+}
+
+table.i tr{
+	
+	border-bottom: 1px solid #ccc;
+}
+
+table.i tr{
+	color:#555;
+}
+
+
+table.i td{
+	padding: 8px;
+    color: #333;
+}
+table.i a.btn{
+	     
+	
+	cursor: pointer;
+	text-decoration: none;
+	
+}
+
+table{
+	font-weight: 300;
+	align-items: center;
+	margin:20px 0;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table tr{
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+}
+
+table tr{
+	color:#555;
+}
+
+
+table td{
+	padding: 8px;
+	color: #333;
+}

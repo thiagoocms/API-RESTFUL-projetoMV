@@ -4,25 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Document</title>
 </head>
 <body>
     
     <div class="bg-img">
-        <div class="content ">
-            <header> <h6>O que você quer fazer?</h6></header>
-        <a class="btn bg-info " href="criar_paciente.html"> criar paciente</a>
-        <a onclick="preencher()" class="btn bg-success " href="consultar_paciente.html"> consultar paciente</a>
-        <a class="btn bg-warning" href="atualizar_paciente.html"> atualizar paciente</a>
-        <a class="btn bg-danger " href="deletar_paciente.html"> deletar paciente</a>
+        <div class="content">
 
-        </div><!--content-->
-    </div> <!-- bg-img-->
+          <div id="result"></div>
+
+           
+            
+            <div  class=" button row mt-4">
+                <div class="col-4">
+                  <a class="btn btn-lg btn-warning btn-block" href="index.html">Voltar</a>
+                </div>
+            </div>
+
+        </div><!--content--->
+    </div><!--body-->
     <script src="main.js"></script>
 </body>
 </html>

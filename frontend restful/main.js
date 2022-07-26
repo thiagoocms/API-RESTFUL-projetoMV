@@ -1,26 +1,26 @@
 const url = "http://localhost:5500/paciente"
-
-function getUsers() {
+//exibir
+function getPacientes() {
   axios.get(url)
     .then(response => {
       const data =  response.data
 
-      renderApiResult.textContent = JSON.stringify(data)
+      result.textContent = JSON.stringify(data)
     })
     .catch(error => console.log(error))
 }
-//exibir
-function getUser() {
+
+function getPaciente() {
   axios.get(`${url}/1`)
     .then(response => {
       const data = response.data
 
       
-      userId.textContent = data.id
-      userName.textContent = data.name
-      userHealthInsuranceCardId.textContent = data.healthInsuranceCardId
-      userAddress = data.address
-      userCreatdAt = data.creatdAt
+      pacienteId.textContent = data.id
+      pacienteName.textContent = data.name
+      pacienteHealthInsuranceCardId.textContent = data.healthInsuranceCardId
+      pacienteAddress = data.address
+      pacienteCreatdAt = data.creatdAt
       
 
     })
@@ -31,14 +31,14 @@ function getUser() {
 
 function btnpost() {
     // capturar os dados do formulário
-    const paciente = getDadosForm()
+    const paciente = getDadosFormPost()
     // enviar os dados para api
-    addNewUser(paciente)
+    addNewPaciente(paciente)
 
     window.location.href = 'index.html'
 }
 
-function getDadosForm () {
+function getDadosFormPost () {
     const inputNome = document.querySelector('#nome')
     const inputNumero = document.querySelector('#numero')
     const inputEndereco = document.querySelector('#endereco')
@@ -54,12 +54,12 @@ function getDadosForm () {
     }
     return paciente
 }
-function addNewUser(paciente) {
+function addNewPaciente(paciente) {
 
   axios.post(url, paciente)
     .then(response => {
       alert(JSON.stringify(response.data))
-      getUsers()
+      getPacientes()
     })
     .catch(error => console.error(error));
 }
@@ -68,15 +68,15 @@ function addNewUser(paciente) {
 
  function btnatl(){
     // capturar os dados do formulário
-    const paciente = putDadosForm()
-    const id = paciente[id]
+    const paciente = getDadosFormPut()
+    const id = paciente.id
     // enviar os dados para api
-    updateUser( paciente, id)
+    updatePaciente( paciente ,id)
 
     window.location.href = 'index.html'
 }
 
-function putDadosForm () {
+function getDadosFormPut () {
     
     const inputId = document.querySelector('#id')
     const inputNome = document.querySelector('#nome')
@@ -95,11 +95,11 @@ function putDadosForm () {
     }
     return paciente
 }
-  function updateUser( paciente, id) {
+  function updatePaciente( paciente, id) {
   axios.put(`${url}/${id}`, paciente)
     .then(response => {
       alert(JSON.stringify(response.data))
-      getUsers()
+      getPacientes()
     })
     .catch(error => console.error(error));
 }
@@ -110,44 +110,58 @@ function putDadosForm () {
 
 function btndel(){
     // capturar os dados do formulário
-    const inputId = document.querySelector('#id')
+    const paciente = getDadosFormDelete()
+    const id = paciente.id
     
-    const id = inputId.value
+    
     // enviar os dados para api
-    deleteUser(id)
+    deletePaciente(id)
 
-    window.location.href = 'index.html'
+    
+}
+
+function getDadosFormDelete () {
+    
+  const inputId = document.querySelector('#id')
+ 
+
+
+
+  const paciente = {
+      id: inputId.value,
+      
+  }
+  return paciente
 }
 
 
-
-function deleteUser(id) {
+function deletePaciente(id) {
   axios.delete(`${url}/${id}`)
     .then(response => {
       alert(JSON.stringify(response.data))
-      getUsers()
+      getPacientes()
     })
     .catch(error => console.error(error));
 }
 
 //calls
-getUsers()
-getUser()
+getPacientes()
+getPaciente()
 
-// addNewUser({
+// addNewPaciente({
 //   name: "jose da silva",
 //    healthInsuranceCardId: "123456789",
 //   address: "rua do shopping",
 //   createdAt:"2022-05-05"
 // })
-// updateUser({
+// updatePaciente({
 //   name: "jose da silva",
 //    healthInsuranceCardId: "123456789",
 //   address: "rua da alegria",
 //   createdAt:"2022-05-05"
 // }, 2)
 
-// deleteUser(2)
+// deletePaciente(2)
 
   
  

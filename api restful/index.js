@@ -10,7 +10,7 @@ app.use(cors())
 
 app.use(express.json())
 
-let users = [{
+let pacientes = [{
   id: 1,
   name: "matilde Gracielly",
   healthInsuranceCardId: "123456789",
@@ -21,70 +21,68 @@ let users = [{
 
 
 app.route('/paciente').get((req, res) => res.json({
-  users
+  pacientes
 }))
 
 app.route('/paciente/:id').get((req, res) => {
-  const userId = req.params.id
+  const pacienteId = req.params.id
 
-  const user = users.find(user => Number(user.id) === Number(userId))
+  const paciente = pacientes.find(paciente => Number(paciente.id) === Number(pacienteId))
 
-  if (!user) {
-    return res.json('User nor found!')
+  if (!paciente) {
+    return res.json('paciente nor found!')
   }
 
-  res.json(user)
+  res.json(paciente)
 })
 
 app.route('/paciente').post((req, res) => {
-  const lastId = users[users.length - 1].id
-  users.push({
+  const lastId = pacientes[pacientes.length - 1].id
+  pacientes.push({
     id: lastId + 1,
     name: req.body.name,
-    avatar: req.body.avatar,
     healthInsuranceCardId: req.body.healthInsuranceCardId,
     address: req.body.address,
     createdAt: req.body.createdAt
   })
-  res.json('Saved user')
+  res.json('Saved paciente')
 })
 
 app.route('/paciente/:id').put( async (req, res) => {
-  const userId = req.params.id
+  const pacienteId = req.params.id
   
-    const user = users.find(user => Number(user.id) === Number(userId))
+    const paciente =  await pacientes.find(paciente => Number(paciente.id) === Number(pacienteId))
 
-  if (!user) {
-    return res.json('User nor found!')
+  if (!paciente) {
+    return res.json('paciente nor found!')
   }
 
-  const updatedUser = {
-    ...user,
+  const updatedPaciente = {
+    ...paciente,
     name: req.body.name,
-    avatar: req.body.avatar,
     healthInsuranceCardId: req.body.healthInsuranceCardId,
     address: req.body.address,
     createdAt: req.body.createdAt
   }
   
 
-   users = users.map(user => {
-    if (Number(user.id) === Number(userId)) {
-      user = updatedUser
+  pacientes = pacientes.map(paciente => {
+    if (Number(paciente.id) === Number(pacienteId)) {
+      paciente = updatedPaciente
     }
-    return user
+    return paciente
   })
   
-  res.json("Updated user")
+  res.json("Updated paciente")
 })
 
 app.route('/paciente/:id').delete((req, res) => {
-  const userId = req.params.id
+  const pacienteId = req.params.id
 
-  users = users.filter(user => Number(user.id) !== Number(userId))
+  pacientes = pacientes.filter(paciente => Number(paciente.id) !== Number(pacienteId))
   
 
-  res.json('Deleted User')
+  res.json('Deleted paciente')
 })
 
 mongoose.connect('mongodb+srv://thiagoocms:Melancia1@cluster0.1ebzx.mongodb.net/?retryWrites=true&w=majority')
