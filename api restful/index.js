@@ -20,11 +20,11 @@ let pacientes = [{
 }]
 
 
-app.route('/paciente').get((req, res) => res.json({
+app.get('/paciente',(req, res) => res.json({
   pacientes
 }))
 
-app.route('/paciente/:id').get((req, res) => {
+app.get('/paciente',(req, res) => {
   const pacienteId = req.params.id
 
   const paciente = pacientes.find(paciente => Number(paciente.id) === Number(pacienteId))
@@ -36,7 +36,7 @@ app.route('/paciente/:id').get((req, res) => {
   res.json(paciente)
 })
 
-app.route('/paciente').post((req, res) => {
+app.post('/paciente',(req, res) => {
   const lastId = pacientes[pacientes.length - 1].id
   pacientes.push({
     id: lastId + 1,
@@ -48,7 +48,7 @@ app.route('/paciente').post((req, res) => {
   res.json('Saved paciente')
 })
 
-app.route('/paciente/:id').put( async (req, res) => {
+app.put('/paciente/:id', async (req, res) => {
   const pacienteId = req.params.id
   
     const paciente =  await pacientes.find(paciente => Number(paciente.id) === Number(pacienteId))
@@ -76,7 +76,7 @@ app.route('/paciente/:id').put( async (req, res) => {
   res.json("Updated paciente")
 })
 
-app.route('/paciente/:id').delete((req, res) => {
+app.delete('/paciente/:id',(req, res) => {
   const pacienteId = req.params.id
 
   pacientes = pacientes.filter(paciente => Number(paciente.id) !== Number(pacienteId))
